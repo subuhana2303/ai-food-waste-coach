@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NurtiMatch RasoiBot - AI Food Waste & Nutrition Coach | SDG 2: Zero Hunger</title>
+    
+    <!-- Google Fonts - Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 & Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Premium CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Dynamic Background Particles -->
+    <div class="particles-container" id="particles-container"></div>
+    <!-- Premium Header -->
+    <header class="header-premium" data-aos="fade-down">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="header-title">
+                        <i class="fas fa-robot text-warning"></i>
+                        NurtiMatch RasoiBot
+                    </h1>
+                    <h2 class="header-bot-subtitle">
+                        <i class="fas fa-leaf text-success"></i>
+                        AI Food Waste & Nutrition Coach
+                    </h2>
+                    <p class="header-subtitle">
+                        <i class="fas fa-heart text-danger"></i>
+                        SDG 2: Zero Hunger | Reducing Food Waste with AI
+                    </p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="header-actions">
+                        <button class="btn btn-outline-light me-2" onclick="showImpactDashboard()">
+                            <i class="fas fa-chart-line"></i> Impact
+                        </button>
+                        <button class="btn btn-outline-light me-2" onclick="showMealPlanner()">
+                            <i class="fas fa-calendar-alt"></i> Meal Plan
+                        </button>
+                        <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                            <i class="fas fa-info-circle"></i> About
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Chat Interface -->
+    <main class="main-container">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-10">
+                    <!-- Chat Container -->
+                    <div class="chat-container" data-aos="fade-up">
+                        <!-- Chat Header -->
+                        <div class="chat-header">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="agent-avatar">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5 class="mb-0">NurtiMatch RasoiBot</h5>
+                                        <small class="text-muted">
+                                            <span class="status-indicator"></span>
+                                            Ready to help reduce food waste
+                                        </small>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-danger btn-sm" onclick="clearChat()">
+                                    <i class="fas fa-trash"></i> Clear Chat
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages Area -->
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Welcome Message -->
+                            <div class="message-container agent-message" data-aos="fade-right">
+                                <div class="message-avatar">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="message-bubble agent-bubble">
+                                    <div class="message-content">
+                                        <h6>👋 Welcome to NurtiMatch RasoiBot - Your AI Food Waste & Nutrition Coach!</h6>
+                                        <p>I'm here to help you reduce food waste and improve nutrition. Just tell me what leftover ingredients you have, and I'll:</p>
+                                        <ul class="mb-2">
+                                            <li>🍳 Find delicious recipes using your ingredients</li>
+                                            <li>🥗 Provide detailed nutrition information</li>
+                                            <li>📦 Give smart storage tips to extend freshness</li>
+                                            <li>💡 Share sustainability insights</li>
+                                        </ul>
+                                        <p class="mb-0"><strong>Try saying:</strong> "tomato, bread, cheese" or "leftover chicken, rice, vegetables"</p>
+                                    </div>
+                                    <div class="message-time">Just now</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Agent Status -->
+                        <div class="agent-status" id="agentStatus" style="display: none;">
+                            <div class="d-flex align-items-center">
+                                <div class="typing-indicator">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <span class="ms-2 status-text">Agent is thinking...</span>
+                            </div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="chat-input">
+                            <form class="input-form" onsubmit="sendMessage(event)">
+                                <div class="input-group">
+                                    <input 
+                                        type="text" 
+                                        class="form-control chat-input-field" 
+                                        id="messageInput"
+                                        placeholder="Enter your leftover ingredients (e.g., tomato, bread, cheese)..."
+                                        autocomplete="off"
+                                    >
+                                    <button class="btn btn-primary send-btn" type="submit" id="sendButton">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quick Action Buttons -->
+    <div class="quick-actions" id="quickActions">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="quick-action-cards">
+                        <div class="quick-card" onclick="quickInput('tomato, bread, cheese')">
+                            <i class="fas fa-pizza-slice"></i>
+                            <span>Quick Recipe</span>
+                        </div>
+                        <div class="quick-card" onclick="quickInput('weekly meal plan for chicken, rice, vegetables')">
+                            <i class="fas fa-calendar-week"></i>
+                            <span>Meal Plan</span>
+                        </div>
+                        <div class="quick-card" onclick="quickInput('storage tips for fruits and vegetables')">
+                            <i class="fas fa-box"></i>
+                            <span>Storage Tips</span>
+                        </div>
+                        <div class="quick-card" onclick="showSustainabilityStats()">
+                            <i class="fas fa-leaf"></i>
+                            <span>Impact Stats</span>
+                        </div>
+                        <div class="quick-card" onclick="showExpirationTracker()">
+                            <i class="fas fa-clock"></i>
+                            <span>Expiration Tracker</span>
+                        </div>
+                        <div class="quick-card" onclick="showSmartRecipes()">
+                            <i class="fas fa-utensils"></i>
+                            <span>Smart Recipes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact Dashboard Modal -->
+    <div class="modal fade" id="impactModal" tabindex="-1" aria-labelledby="impactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content premium-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="impactModalLabel">
+                        <i class="fas fa-chart-line text-success"></i>
+                        Environmental Impact Dashboard
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="impactDashboardContent">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Calculating environmental impact...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Smart Recipes Modal -->
+    <div class="modal fade" id="smartRecipesModal" tabindex="-1" aria-labelledby="smartRecipesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content premium-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="smartRecipesModalLabel">
+                        <i class="fas fa-utensils text-primary"></i>
+                        Smart Recipe Recommendations
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="smart-recipes-interface">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-list"></i> Your Ingredients</h6>
+                                <textarea class="form-control" id="smartRecipesInput" rows="3" 
+                                    placeholder="Enter your ingredients (e.g., tomato, bread, cheese...)"></textarea>
+                                
+                                <h6 class="mt-3"><i class="fas fa-globe"></i> Cuisine Preference (Optional)</h6>
+                                <select class="form-select" id="cuisineSelect">
+                                    <option value="">Any Cuisine</option>
+                                    <option value="italian">Italian</option>
+                                    <option value="asian">Asian</option>
+                                    <option value="american">American</option>
+                                    <option value="mexican">Mexican</option>
+                                    <option value="mediterranean">Mediterranean</option>
+                                </select>
+                                
+                                <h6 class="mt-3"><i class="fas fa-leaf"></i> Dietary Preferences</h6>
+                                <div class="dietary-options">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="vegan" id="veganCheck">
+                                        <label class="form-check-label" for="veganCheck">Vegan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="gluten_free" id="glutenCheck">
+                                        <label class="form-check-label" for="glutenCheck">Gluten-Free</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="dairy_free" id="dairyCheck">
+                                        <label class="form-check-label" for="dairyCheck">Dairy-Free</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="keto" id="ketoCheck">
+                                        <label class="form-check-label" for="ketoCheck">Keto</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-primary mt-3" onclick="getSmartRecipes()">
+                                    <i class="fas fa-search"></i> Find Perfect Recipes
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="smartRecipesContent">
+                                    <div class="text-muted text-center">
+                                        <i class="fas fa-utensils fa-3x mb-3"></i>
+                                        <p>Enter your ingredients to discover perfect recipes with step-by-step instructions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expiration Tracker Modal -->
+    <div class="modal fade" id="expirationModal" tabindex="-1" aria-labelledby="expirationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content premium-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="expirationModalLabel">
+                        <i class="fas fa-clock text-warning"></i>
+                        Smart Expiration Tracker
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="expiration-tracker-interface">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-apple-alt"></i> Track Your Ingredients</h6>
+                                <textarea class="form-control" id="expirationInput" rows="4" 
+                                    placeholder="Enter ingredients to track (e.g., tomato, milk, bread, banana...)"></textarea>
+                                
+                                <h6 class="mt-3"><i class="fas fa-thermometer-half"></i> Storage Location</h6>
+                                <select class="form-select" id="storageSelect">
+                                    <option value="fridge">Refrigerator</option>
+                                    <option value="counter">Counter/Pantry</option>
+                                    <option value="freezer">Freezer</option>
+                                </select>
+                                
+                                <button class="btn btn-warning mt-3" onclick="trackExpiration()">
+                                    <i class="fas fa-search"></i> Track Expiration Dates
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="expirationContent">
+                                    <div class="text-muted text-center">
+                                        <i class="fas fa-clock fa-3x mb-3"></i>
+                                        <p>Track your ingredients to prevent waste and get optimal storage tips</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meal Planner Modal -->
+    <div class="modal fade" id="mealPlanModal" tabindex="-1" aria-labelledby="mealPlanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content premium-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mealPlanModalLabel">
+                        <i class="fas fa-calendar-alt text-primary"></i>
+                        AI Weekly Meal Planner
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="meal-planner-interface">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-utensils"></i> Available Ingredients</h6>
+                                <textarea class="form-control" id="ingredientsInput" rows="4" 
+                                    placeholder="Enter your available ingredients (e.g., chicken, rice, tomatoes, onions...)"></textarea>
+                                <button class="btn btn-primary mt-3" onclick="generateMealPlan()">
+                                    <i class="fas fa-magic"></i> Generate Weekly Plan
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="mealPlanContent">
+                                    <div class="text-muted text-center">
+                                        <i class="fas fa-calendar-alt fa-3x mb-3"></i>
+                                        <p>Enter your ingredients to generate a personalized weekly meal plan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content premium-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">
+                        <i class="fas fa-leaf text-success"></i>
+                        About AI Food Waste & Nutrition Coach
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-bullseye text-primary"></i> SDG 2 Connection</h6>
+                            <p>This project directly addresses <strong>Sustainable Development Goal 2: Zero Hunger</strong> by:</p>
+                            <ul>
+                                <li>Reducing food waste through smart recipe suggestions</li>
+                                <li>Improving nutrition awareness and food utilization</li>
+                                <li>Promoting sustainable consumption patterns</li>
+                                <li>Maximizing the value of available food resources</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-cogs text-success"></i> How It Works</h6>
+                            <ol>
+                                <li><strong>Smart Parsing:</strong> AI understands your ingredient lists</li>
+                                <li><strong>Recipe Discovery:</strong> Finds recipes using your leftovers</li>
+                                <li><strong>Nutrition Analysis:</strong> Provides detailed nutritional information</li>
+                                <li><strong>Storage Optimization:</strong> Extends ingredient freshness</li>
+                                <li><strong>Sustainability Tips:</strong> Educates on environmental impact</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <h6><i class="fas fa-chart-line text-warning"></i> Impact Potential</h6>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="impact-stat">
+                                    <strong>30%</strong>
+                                    <small>Food Waste Reduction</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="impact-stat">
+                                    <strong>40%</strong>
+                                    <small>Better Nutrition</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="impact-stat">
+                                    <strong>25%</strong>
+                                    <small>Cost Savings</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="tech-stack">
+                        <small class="text-muted">
+                            <i class="fab fa-python"></i> Python Flask |
+                            <i class="fab fa-js"></i> JavaScript |
+                            <i class="fab fa-bootstrap"></i> Bootstrap 5 |
+                            <i class="fas fa-database"></i> CSV Data |
+                            <i class="fas fa-cloud"></i> Recipe Puppy API
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
