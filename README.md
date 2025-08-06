@@ -58,9 +58,6 @@ The **AI Food Waste & Nutrition Coach** is a sophisticated web application that 
 - **Sophisticated animations** with AOS library
 - **Dark/light theme support** for accessibility
 
-## 🏆 Hackathon Excellence
-
-This project is specifically designed for hackathon success with:
 
 ### 📊 Judge-Impressing Features
 - **Real environmental impact calculations** with scientific backing
@@ -126,7 +123,7 @@ pip --version
 ### Installation
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/ai-food-waste-coach.git
+git clone https://github.com/subuhana2303/ai-food-waste-coach.git
 cd ai-food-waste-coach
 
 # 2. Install dependencies
@@ -195,8 +192,7 @@ ai-food-waste-coach/
 │   └── js/app.js                # Interactive functionality
 ├── 📱 templates/                 # HTML templates
 │   └── index.html               # Main application interface
-├── 📝 README.md                  # Project documentation
-├── 🔄 WORKFLOW.md               # Development workflow guide
+├── 📝 README.md                  # Project documentation        
 └── 📦 requirements.txt          # Python dependencies
 ```
 
@@ -300,13 +296,6 @@ Content-Type: application/json
 - ✅ Edge 90+
 - ✅ Mobile browsers
 
-## 🚀 Deployment Options
-
-### Replit (Recommended for Hackathons)
-1. Fork this repository on Replit
-2. Run automatically with zero configuration
-3. Share live demo link with judges
-4. Instant scalability and reliability
 
 ### Local Development
 ```bash
@@ -377,9 +366,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## 📞 Support & Contact
 
 ### Project Maintainer
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **LinkedIn**: [Your Name](https://linkedin.com/in/yourname)
+- **Email**: subuhanabasheer41@gmail.com
+- **GitHub**: [subuhana2303](https://github.com/subuhana2303)
+- **LinkedIn**: [Subuhana B](https://linkedin.com/in/SubuhanaB)
 
 ### Community
 - **Issues**: Report bugs and request features
@@ -394,6 +383,5 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 *Built with ❤️ for a sustainable future*
 
-[Live Demo](https://your-demo-link.replit.app) • [Documentation](./WORKFLOW.md) • [Contributing](./CONTRIBUTING.md)
 
 </div>
