@@ -1,7 +1,7 @@
 # 🌱 AI Food Waste & Nutrition Coach
 
 > **Enterprise-grade AI-powered application for reducing food waste and improving nutrition**  
-> *SDG 2: Zero Hunger Implementation*
+> *SDG 2: Zero Hunger & SDG 12: Responsible Consumption and Production Implementation*
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
@@ -11,8 +11,23 @@
 
 ## 🚀 Overview
 
-The **AI Food Waste & Nutrition Coach** is a sophisticated web application that leverages advanced artificial intelligence to combat food waste while promoting better nutrition. Built specifically for hackathons and real-world deployment, this application directly addresses **UN Sustainable Development Goal 2: Zero Hunger** through innovative technology and user-centric design.
+The **AI Food Waste & Nutrition Coach** is a sophisticated web application that leverages advanced artificial intelligence to combat food waste while promoting better nutrition. Built specifically for hackathons and real-world deployment, this application directly addresses **UN Sustainable Development Goal 2 & 12: Zero Hunger ,Responsible Consumption and Production Implementation** through innovative technology and user-centric design.
 
+**TITLE:** NutriMatch Rasoibot: AI Food Waste and Nutrition Coach  
+
+**Presented by:** Pixies  
+
+**Group Members:**  
+1. Subuhana B
+2. Swetha S
+3. Stefy Thomas  
+4. Suvetha R
+5. Nilin Mary  
+6. Saniyah Sunil  
+
+
+
+**College:** LBS Institute Of Technology for Women, Poojappura, Thiruvananthapuram 
 ## ✨ Key Features
 
 ### 🤖 Advanced AI Agent Architecture
@@ -303,40 +318,6 @@ python main.py
 # Application runs on http://localhost:5000
 ```
 
-### Production Deployment
-- **Heroku** for cloud hosting
-- **Docker** containerization support
-- **AWS/GCP** for enterprise scale
-- **Environment variables** for configuration
-
-## 🎨 Design Philosophy
-
-### User Experience
-- **Intuitive chat interface** for natural interaction
-- **Progressive disclosure** of information
-- **Visual feedback** for all actions
-- **Accessibility compliance** (WCAG 2.1)
-
-### Visual Design
-- **Glass-morphism** for modern aesthetics
-- **Consistent color palette** with brand identity
-- **Professional typography** for readability
-- **Smooth animations** for engagement
-
-## 📈 Performance Metrics
-
-### Technical Performance
-- **< 2 second** initial page load
-- **< 1 second** API response times
-- **100% uptime** reliability target
-- **Mobile-first** responsive design
-
-### User Engagement
-- **Intuitive navigation** with minimal learning curve
-- **Actionable insights** for immediate value
-- **Progressive difficulty** in challenges
-- **Social sharing** capabilities for impact
-
 ## 🤝 Contributing
 
 ### Development Workflow
@@ -356,24 +337,25 @@ python main.py
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-## 🏆 Awards & Recognition
-
-- 🥇 **Hackathon Ready** - Designed for competition success
-- 🌟 **SDG Impact** - Directly addresses UN Sustainable Development Goals
-- 💡 **Innovation Award** - Novel approach to food waste reduction
-- 🎨 **Design Excellence** - Professional-grade UI/UX
 
 ## 📞 Support & Contact
 
 ### Project Maintainer
-- **Email**: subuhanabasheer41@gmail.com
-- **GitHub**: [subuhana2303](https://github.com/subuhana2303)
-- **LinkedIn**: [Subuhana B](https://linkedin.com/in/SubuhanaB)
+- **SUVETHA R**: s.u.v.e.t.h.a.r.277@gmail.com
+- **SUBUHANA B**: subuhanabasheer23@gmail.com
+- **STEFY THOMAS**: stefythomas4@gmail.com
+- **SWETHA S**: swethaproj7@gmail.com
+- **NILIN MARY**:nilin.mw25@gmail.com
+- **SANIYAH SUNIL**:saniyahsunil68@gmail.com
 
 ### Community
 - **Issues**: Report bugs and request features
 - **Discussions**: Join community conversations
 - **Wiki**: Comprehensive documentation and guides
+### 🌐 Deployment
+
+**Check out the live version here:**  
+👉🏻 [Live Demo](https://ai-food-waste-coach-2.onrender.com/)
 
 ---
 
