@@ -1,0 +1,11 @@
+Flask>=2.0
+pandas
+numpy
+scikit-learn
+requests
+openai
+puppy
+fuzzywuzzy
+python-Levenshtein
+flask-session
+flask-cors
